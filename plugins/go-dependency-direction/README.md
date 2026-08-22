@@ -45,6 +45,20 @@ No slash command. The `description` in the frontmatter is the trigger — Claude
 
 If it fails to load on a task where it should, widen the `description` with more trigger terms. Leave the body alone: the body is what Claude follows *after* loading, the description is what gets it loaded.
 
+## Turning it off and on
+
+Once loaded it stays active for the session. Three ways off, depending on how off you want it:
+
+| Situation | Off | Back on |
+|---|---|---|
+| Loaded, but you want ordinary Go for a while — legacy refactor, a quick script | say `stop go-dd` | say `go-dd on` |
+| It never loaded and you want it anyway | — | `/go-dependency-direction` |
+| Not this project, not this month | `/plugin` → disable, or `"enabledPlugins": { "go-dependency-direction@rgglez-dev-skills": false }` in `settings.json` | re-enable the same way |
+
+Only the last one needs a session restart. `normal mode` and the Spanish `ignora las reglas de dependencias` / `aplica las reglas de dependencias` work as synonyms for the first.
+
+The off switch lives in the skill body, so it applies to the Claude Code skill only — the portable `AGENTS.md` variant has no equivalent.
+
 ## Checking it works
 
 Ask Claude for anything where one package needs a collaborator — storage, an HTTP client for a third-party API, a notifier, a cache, a clock, a metrics sink, a queue publisher. Under the skill it declares a minimal interface in the *consuming* package. Without it, it tends to export a fat interface from the implementation package and make every caller import it.

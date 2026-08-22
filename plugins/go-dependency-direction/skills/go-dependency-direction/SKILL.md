@@ -5,6 +5,15 @@ description: Applies dependency-direction rules when writing or reviewing Go cod
 
 # Dependency direction in Go
 
+## Persistence
+
+Active for the rest of the session once loaded. Off only when the user says
+"stop go-dd" / "normal mode" / "ignora las reglas de dependencias" — then write
+Go the ordinary way, and say so in one line.
+
+Back on when they say "go-dd" / "go-dd on" / "aplica las reglas de
+dependencias", or invoke the skill again. Confirm in one line and resume.
+
 The import graph **is** the architecture. Directory names (`domain/`, `usecase/`, `infrastructure/`) are decoration. A package called `domain` that imports the one holding your database pool is infrastructure code wearing a label.
 
 Every layout decision reduces to one question: *which package is permitted to know that another exists?*
