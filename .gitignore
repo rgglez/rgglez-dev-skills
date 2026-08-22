@@ -1,0 +1,7 @@
+# Source material — reference only, not redistributable
+*.pdf
+
+# Go
+plugins/*/example/billing
+*.test
+*.out

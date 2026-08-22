@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "go-dependency-direction",
+  "displayName": "Go Dependency Direction",
+  "version": "0.1.0",
+  "description": "Makes Claude follow one architectural rule when it writes Go: the import graph is the architecture. Caller-declared minimal interfaces, one-way package arrows.",
+  "author": {
+    "name": "Rodolfo González González",
+    "url": "https://github.com/rgglez"
+  },
+  "homepage": "https://github.com/rgglez/rgglez-dev-skills/tree/main/plugins/go-dependency-direction",
+  "repository": "https://github.com/rgglez/rgglez-dev-skills",
+  "license": "MIT",
+  "keywords": [
+    "go",
+    "golang",
+    "architecture",
+    "clean-architecture",
+    "dependency-inversion",
+    "interfaces",
+    "package-design"
+  ]
+}

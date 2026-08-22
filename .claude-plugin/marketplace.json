@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "rgglez-dev-skills",
+  "description": "Development skills for Claude Code, one plugin per topic.",
+  "owner": {
+    "name": "Rodolfo González González",
+    "url": "https://github.com/rgglez"
+  },
+  "plugins": [
+    {
+      "name": "go-dependency-direction",
+      "source": "./plugins/go-dependency-direction",
+      "description": "Dependency-direction rules for Go: caller-declared minimal interfaces, one-way package arrows, no domain→infrastructure imports.",
+      "category": "development",
+      "tags": ["go", "golang", "architecture"]
+    }
+  ]
+}
