@@ -1,6 +1,9 @@
 # rgglez-dev-skills
 
-A Claude Code plugin marketplace: development skills, one plugin per topic.
+A marketplace for development skills.
+
+- Claude Code: plugin marketplace (`.claude-plugin/`).
+- Kilo (Grok): remote skills source via `skills.urls` + `index.json` (Agent Skills standard).
 
 ## Install
 
@@ -16,24 +19,45 @@ Then install whichever plugins you want:
 
 `/plugin marketplace update rgglez-dev-skills` pulls later changes.
 
+## Kilo / Grok
+
+Add as a remote skills source (no UI marketplace registration needed):
+
+```jsonc
+// kilo.jsonc (project or global)
+{
+  "skills": {
+    "urls": ["https://raw.githubusercontent.com/rgglez/rgglez-dev-skills/main/skills"]
+  }
+}
+```
+
+Then `/reload` or start a new session. The skill loads on-demand when the task matches its description.
+
+For always-on project rules instead, copy `portable/AGENTS.md` to your repo root as `AGENTS.md`.
+
 ## Plugins
 
 | Plugin | What it does |
 | --- | --- |
-| [`go-dependency-direction`](plugins/go-dependency-direction/) | Makes Claude follow one architectural rule when it writes Go: the import graph is the architecture. Caller-declared minimal interfaces, one-way package arrows. Ships a runnable example and an `AGENTS.md` variant for other agents. |
+| [`go-dependency-direction`](plugins/go-dependency-direction/) | Makes the agent follow one architectural rule when it writes Go: the import graph is the architecture. Caller-declared minimal interfaces, one-way package arrows. Ships a runnable example and an `AGENTS.md` variant for other agents. Available for Claude (plugin) and Kilo/Grok (remote skill). |
 
 ## Layout
 
 ```
-.claude-plugin/marketplace.json     the catalog
+.claude-plugin/marketplace.json     the catalog (Claude)
 plugins/<name>/
   .claude-plugin/plugin.json        that plugin's manifest
   skills/<name>/SKILL.md            the skill Claude loads
   README.md                         that plugin's docs
+skills/                             Kilo remote skills source
+  <name>/
+    SKILL.md
+  index.json
 LICENSE
 ```
 
-One plugin per skill, so people install only what they want. Adding another means a new directory under `plugins/` and one more entry in `marketplace.json`.
+One plugin per skill (Claude). Kilo skills are flat under `skills/`. Adding another Claude plugin means a new dir under `plugins/` + entry in `marketplace.json`. Kilo additions go under `skills/`.
 
 ## Working on this repo
 
@@ -44,14 +68,18 @@ claude plugin validate . --strict
 claude plugin validate ./plugins/go-dependency-direction --strict
 ```
 
+For the Kilo side, ensure `skills/<name>/SKILL.md` has valid frontmatter (`name` + `description`, `name` matches dir) and `skills/index.json` version matches the corresponding `plugin.json`.
+
 Test the marketplace locally before it goes public:
 
 ```
-/plugin marketplace add /path/to/this/repo
-/plugin install go-dependency-direction@rgglez-dev-skills
+ /plugin marketplace add /path/to/this/repo
+ /plugin install go-dependency-direction@rgglez-dev-skills
 ```
 
-Version each plugin in its own `plugin.json` only. Setting `version` in `marketplace.json` as well is ignored without warning, and a stale manifest value silently wins.
+For Kilo, point `skills.urls` at the `skills/` subdir and start a session (or `/reload`).
+
+Version each plugin in its own `plugin.json` only. Setting `version` in `marketplace.json` as well is ignored without warning, and a stale manifest value silently wins. Keep the `skills/index.json` version in sync with the plugin manifest.
 
 ## License
 

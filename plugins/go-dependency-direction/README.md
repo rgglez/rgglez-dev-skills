@@ -7,9 +7,15 @@ Distilled from [*Forget clean architecture — Master dependency direction in Go
 ## Contents
 
 ```
-skills/go-dependency-direction/SKILL.md   the skill itself (Claude Code)
-portable/AGENTS.md                        trimmed variant for other agents — see below
-example/                                  a runnable Go program that obeys it
+plugins/.../skills/go-dependency-direction/SKILL.md   Claude Code skill
+portable/AGENTS.md                                    trimmed for AGENTS.md (any agent)
+example/                                              runnable demo
+```
+
+Kilo remote source (top level of repo):
+```
+skills/go-dependency-direction/SKILL.md   Kilo/Agent-Skills variant (adapted activation)
+skills/index.json
 ```
 
 ## What the skill enforces
@@ -69,7 +75,26 @@ Storage is just the most common instance; the tell is the same everywhere: which
 
 ## Other agents (Codex, Grok, …)
 
-The rules are plain markdown and port anywhere. What does **not** port is the loading machinery: the YAML frontmatter, the `~/.claude/skills/` location, and the conditional auto-load that keeps the body out of context until a Go task shows up.
+The rules are plain markdown and port anywhere.
+
+### Kilo (Grok)
+
+Use the remote skills source from this repo (Agent Skills standard, on-demand load via description):
+
+```jsonc
+// in kilo.jsonc (project or global)
+{
+  "skills": {
+    "urls": ["https://raw.githubusercontent.com/rgglez/rgglez-dev-skills/main/skills"]
+  }
+}
+```
+
+After adding or editing: `/reload` or new session.
+
+The Kilo variant lives at the repo root as `skills/go-dependency-direction/SKILL.md` (adapted activation text; same rules).
+
+### Project-level rules (any agent)
 
 [`portable/AGENTS.md`](portable/AGENTS.md) is the trimmed variant — same rules, one code pair instead of the antipattern/pattern pair, no frontmatter. Copy it into the root of a Go repo:
 
@@ -77,14 +102,20 @@ The rules are plain markdown and port anywhere. What does **not** port is the lo
 cp portable/AGENTS.md /path/to/your-go-repo/AGENTS.md
 ```
 
-Codex reads `AGENTS.md` from the repo root. For Grok it depends on the client — if it honors `AGENTS.md` or a rules file, same move; otherwise paste the contents as a system instruction. Check the current docs for either, the conventions move.
+Codex reads `AGENTS.md` from the repo root. Kilo also loads root `AGENTS.md`.
 
 Two caveats:
 
 - **It is always loaded**, not conditional. It costs context on every turn, `git status` included. That is why the portable version is trimmed, and why it belongs only in repos that are actually Go.
 - **It merges with whatever else the repo's `AGENTS.md` says.** If one already exists, append these rules as a section instead of overwriting it.
 
-Keeping the two in sync is manual. `SKILL.md` is the source; edit it first, then port the change.
+### Sync
+
+Keeping the variants in sync is manual. `plugins/.../skills/go-dependency-direction/SKILL.md` (Claude) is the source of the rules; edit it first, then port the change to:
+- `portable/AGENTS.md` (trim for always-on)
+- `skills/go-dependency-direction/SKILL.md` (Kilo on-demand, only adapt the activation section)
+
+The Claude `SKILL.md` also documents its own off switches; the Kilo and portable variants do not.
 
 ## License
 
