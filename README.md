@@ -1,5 +1,13 @@
 # rgglez-dev-skills
 
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+![GitHub all releases](https://img.shields.io/github/downloads/rgglez/rgglez-dev-skills/total)
+![GitHub issues](https://img.shields.io/github/issues/rgglez/rgglez-dev-skills)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/y/rgglez/rgglez-dev-skills)
+[![GitHub release](https://img.shields.io/github/release/rgglez/rgglez-dev-skills.svg)](https://github.com/rgglez/rgglez-dev-skills/releases/)
+![GitHub stars](https://img.shields.io/github/stars/rgglez/rgglez-dev-skills?style=social)
+![GitHub forks](https://img.shields.io/github/forks/rgglez/rgglez-dev-skills?style=social)
+
 A marketplace for development skills.
 
 - Claude Code: plugin marketplace (`.claude-plugin/`).
