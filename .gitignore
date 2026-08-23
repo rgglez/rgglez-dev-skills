@@ -5,3 +5,8 @@
 plugins/*/example/billing
 *.test
 *.out
+
+# Kilo local state (tool deps, generated plans, etc.)
+# Project skills/agents live at top-level skills/ and .kilo/skills/ when shared.
+# This .kilo/ is the local Kilo workspace for this checkout.
+/.kilo/
