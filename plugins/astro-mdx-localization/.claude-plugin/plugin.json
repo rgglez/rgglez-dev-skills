@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "astro-mdx-localization",
+  "version": "0.1.0",
+  "description": "Translate Astro Markdown and MDX content using each project's routing, metadata, asset, and validation conventions.",
+  "author": {
+    "name": "Rodolfo González González",
+    "url": "https://github.com/rgglez"
+  },
+  "homepage": "https://github.com/rgglez/rgglez-dev-skills/tree/main/plugins/astro-mdx-localization",
+  "repository": "https://github.com/rgglez/rgglez-dev-skills",
+  "license": "MIT",
+  "keywords": ["astro", "mdx", "markdown", "localization", "translation"]
+}
