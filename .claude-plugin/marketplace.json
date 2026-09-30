@@ -12,7 +12,23 @@
       "source": "./plugins/go-dependency-direction",
       "description": "Dependency-direction rules for Go: caller-declared minimal interfaces, one-way package arrows, no domain→infrastructure imports.",
       "category": "development",
-      "tags": ["go", "golang", "architecture"]
+      "tags": [
+        "go",
+        "golang",
+        "architecture"
+      ]
+    },
+    {
+      "name": "astro-mdx-localization",
+      "source": "./plugins/astro-mdx-localization",
+      "description": "Translate Astro Markdown and MDX content using each project's localization conventions.",
+      "category": "development",
+      "tags": [
+        "astro",
+        "mdx",
+        "localization",
+        "translation"
+      ]
     }
   ]
 }

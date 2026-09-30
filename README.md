@@ -23,6 +23,7 @@ Then install whichever plugins you want:
 
 ```
 /plugin install go-dependency-direction@rgglez-dev-skills
+/plugin install astro-mdx-localization@rgglez-dev-skills
 ```
 
 `/plugin marketplace update rgglez-dev-skills` pulls later changes.
@@ -49,6 +50,7 @@ For always-on project rules instead, copy `portable/AGENTS.md` to your repo root
 | Plugin | What it does |
 | --- | --- |
 | [`go-dependency-direction`](plugins/go-dependency-direction/) | Makes the agent follow one architectural rule when it writes Go: the import graph is the architecture. Caller-declared minimal interfaces, one-way package arrows. Ships a runnable example and an `AGENTS.md` variant for other agents. Available for Claude (plugin) and Kilo/Grok (remote skill). |
+| [`astro-mdx-localization`](plugins/astro-mdx-localization/) | Translates Astro Markdown and MDX articles using the project's own locale routes, metadata, components, assets, and validation workflow. Supports any language pair. Available as a Claude plugin and a standalone remote skill. |
 
 ## Layout
 
@@ -74,6 +76,7 @@ Validate before pushing — `--strict` turns warnings into errors and catches mi
 ```sh
 claude plugin validate . --strict
 claude plugin validate ./plugins/go-dependency-direction --strict
+claude plugin validate ./plugins/astro-mdx-localization --strict
 ```
 
 For the Kilo side, ensure `skills/<name>/SKILL.md` has valid frontmatter (`name` + `description`, `name` matches dir) and `skills/index.json` version matches the corresponding `plugin.json`.
